@@ -33,7 +33,7 @@ jobs:
       run: |
         mkdir build
         cd build
-        cmake ..
+        cmake -DCMAKE_TOOLCHAIN_FILE=../toolchain.cmake ..
 
     # 构建 C++ 项目
     - name: Build project
