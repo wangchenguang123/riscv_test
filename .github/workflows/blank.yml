@@ -46,4 +46,4 @@ jobs:
       run: |
         # 使用 QEMU 模拟器来运行 RISC-V 程序
         sudo apt-get install -y qemu-user
-        qemu-riscv64 ./your_program
+        qemu-riscv64 ./build/riscv-test
