@@ -1,0 +1,49 @@
+name: Build and Test C++ on RISC-V
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 检出代码
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    # 安装依赖
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y cmake g++ wget
+
+    # 安装 RISC-V 工具链
+    - name: Install RISC-V toolchain
+      run: |
+        sudo apt-get install -y gcc-riscv64-linux-gnu
+
+    # 创建构建目录
+    - name: Create build directory
+      run: |
+        mkdir build
+        cd build
+        cmake ..
+
+    # 构建 C++ 项目
+    - name: Build project
+      run: |
+        cd build
+        make
+
+    # 运行程序（假设已经有模拟器或者环境来执行 RISC-V 程序）
+    - name: Test RISC-V program
+      run: |
+        # 使用 QEMU 模拟器来运行 RISC-V 程序
+        sudo apt-get install -y qemu-user
+        qemu-riscv64 ./your_program
