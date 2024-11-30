@@ -47,5 +47,5 @@ jobs:
     - name: Test RISC-V program
       run: |
         # 使用 QEMU 模拟器来运行 RISC-V 程序
-        qemu-riscv64 ./build/riscv_test
+        qemu-riscv64 -L /usr/riscv64-linux-gnu ./build/riscv_test
       working-directory: ${{ github.workspace }}
