@@ -26,7 +26,7 @@ jobs:
     # 安装 RISC-V 工具链
     - name: Install RISC-V toolchain
       run: |
-        sudo apt-get install -y gcc-riscv64-linux-gnu qemu-user
+        sudo apt-get install -y gcc-riscv64-linux-gnu qemu-user g++-riscv64-linux-gnu libc6-dev-riscv64-cross
         
     # 创建构建目录
     - name: Create build directory
