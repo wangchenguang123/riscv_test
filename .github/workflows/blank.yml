@@ -26,24 +26,26 @@ jobs:
     # 安装 RISC-V 工具链
     - name: Install RISC-V toolchain
       run: |
-        sudo apt-get install -y gcc-riscv64-linux-gnu
-
+        sudo apt-get install -y gcc-riscv64-linux-gnu qemu-user
+        
     # 创建构建目录
     - name: Create build directory
       run: |
         mkdir build
         cd build
         cmake -DCMAKE_TOOLCHAIN_FILE=../toolchain.cmake ..
+      working-directory: ${{ github.workspace }}
 
     # 构建 C++ 项目
     - name: Build project
       run: |
         cd build
         make
+      working-directory: ${{ github.workspace }}
 
     # 运行程序（假设已经有模拟器或者环境来执行 RISC-V 程序）
     - name: Test RISC-V program
       run: |
         # 使用 QEMU 模拟器来运行 RISC-V 程序
-        sudo apt-get install -y qemu-user
         qemu-riscv64 ./build/riscv_test
+      working-directory: ${{ github.workspace }}
